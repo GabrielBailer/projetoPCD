@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run all services",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_all.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

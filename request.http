@@ -1,0 +1,36 @@
+
+GET http://127.0.0.1:8001/
+
+###
+
+GET http://127.0.0.1:8001/alunos
+
+###
+
+POST http://127.0.0.1:8001/alunos
+Content-Type: application/json
+
+{
+  "nome": "Marcos Mendes",
+  "matricula": "202516",
+  "email": "marcos@email.com"
+}
+
+###
+
+
+GET http://127.0.0.1:8001/alunos/1
+
+###
+
+DELETE http://127.0.0.1:8001/alunos/16
+
+###
+GET http://127.0.0.1:8010/health
+
+###
+GET http://127.0.0.1:8002/health
+
+###
+GET http://127.0.0.1:8003/health
+
