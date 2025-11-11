@@ -97,3 +97,7 @@ def remover_aluno(aluno_id: int):
     aluno_db.remove(aluno_para_remover)
     
     return {"mensagem": f"Aluno ID {aluno_id} removido com sucesso."}
+
+if __name__ == "__main__":
+    print("🚀 Iniciando servidor FastAPI...")
+    uvicorn.run(app, host="127.0.0.1", port=8013)
