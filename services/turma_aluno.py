@@ -1,7 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
+import uvicorn
 import requests 
+
+print("🎯 MICROSSERVIÇO DE MATRÍCULAS")
+print("=" * 60)
 
 app = FastAPI(title="Turma-Aluno")
 
@@ -59,19 +63,18 @@ def criar_matricula(matricula: Matricula):
 
     return {"mensagem": "Matricula criada com sucesso!", "matricula": nova_matricula}
 
-"""@app.post("/matriculas")
+@app.post("/matriculas")
 def criar_matricula(matricula: Matricula):
-    Verificar duplicidade
+
     for m in matriculas_db:
         if m["id_turma"] == matricula.id_turma and m["id_aluno"] == matricula.id_aluno:
             raise HTTPException(status_code=400, detail="Aluno já matriculado nessa turma.")
 
-    Validação via outros microsserviços
     validar_recurso(ALUNOS_URL, matricula.id_aluno, "Aluno")    
     validar_recurso(TURMAS_URL, matricula.id_turma, "Turma")
 
     matriculas_db.append(matricula.dict())
-    return {"mensagem": "Matrícula criada com sucesso!", "matricula": matricula}"""
+    return {"mensagem": "Matrícula criada com sucesso!", "matricula": matricula}
 
 @app.delete("/matriculas")
 def remover_matricula(matricula: Matricula):
@@ -80,3 +83,6 @@ def remover_matricula(matricula: Matricula):
             matriculas_db.remove(m)
             return {"mensagem": "Matrícula removida com sucesso!"}
     raise HTTPException(status_code=404, detail="Matrícula não encontrada.")
+
+    if __name__ == "__main__":
+        uvicorn.run("turma_aluno:app", host="127.0.0.1", port=8003, reload=True)

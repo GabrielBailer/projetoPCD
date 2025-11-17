@@ -22,7 +22,7 @@ if __name__ == "__main__":
         threading.Thread(target=run, args=(turma_app, 8004), daemon=True),          #TURMA
     ]
     for t in threads: t.start()
-    print("Services up: academico:8010, salas:8001, turmas:8002, notas:8003")
+    print("Services up: academico:8010, disciplina:8000, aluno:8001, notas:8002, turma_aluno:8003, turmas:8004")
     try:
         while True:
             time.sleep(1)

@@ -56,7 +56,7 @@ def listar_disciplinas():
 def buscar_disciplina(disciplina_id: int):
     for d in disciplina_db:
         if d["id_disciplina"] == disciplina_id:
-            return d
+            return {"servico": "disciplina", "displina": disciplina}
     raise HTTPException(status_code=404, detail="Disciplina não encontrada")
 
 @app.post("/disciplinas")

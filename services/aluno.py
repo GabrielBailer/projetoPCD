@@ -65,10 +65,9 @@ def listar_alunos():
 
 @app.get("/alunos/{aluno_id}")
 def buscar_aluno(aluno_id: int):
-    """Busca um aluno pelo ID"""
     for aluno in aluno_db:
         if aluno["id"] == aluno_id:
-            return aluno
+            return  {"servico": "aluno", "aluno": aluno}
     raise HTTPException(status_code=404, detail="Aluno não encontrado")
 
 @app.post("/alunos")
