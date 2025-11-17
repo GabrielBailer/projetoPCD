@@ -50,22 +50,17 @@ Gerencia informações dos alunos.
 - **DELETE /alunos/{id}** — Remove um aluno
 - **GET /health** — Health check
 ---
-
 ## Diagrama da arquitetura
 
 ---
-
 ## Padrões utilizados
 
 - Arquitetura de Microserviço:
 Cada domínio (alunos, turmas, disciplinas, notas, matrículas) funciona como um serviço independente, com base de dados própria e APIs isoladas.
-
 - RESTful API:
 Todos os serviços seguem o modelo REST, utilizando métodos HTTP adequados (GET, POST, DELETE, etc.).
-
 - Validação Distribuída:
 Serviços como Notas e Matrículas validam recursos externos consumindo outros microsserviços via HTTP.
-
 
 ---
 ## Estrutura das pastas
@@ -89,7 +84,6 @@ project-root/
 └── .gitignore
 ```
 ---
-
 ## Como instalar o serviço
 Siga os passos abaixo para instalar o projeto localmente:
 
@@ -101,7 +95,6 @@ python -m venv venv
 3. Instalar dependências: pip install -r requirements.txt
 
 ---
-
 ## Como iniciar o serviço
 Siga os passos abaixo para iniciar todos os microserviços:
 
@@ -111,26 +104,49 @@ Siga os passos abaixo para iniciar todos os microserviços:
    - python services/disciplina.py
    - python services/notas_server.py
    - python gateway.py
-
 ---
-
 ## Portas utilizadas por cada serviço
+Cada microserviço roda em uma porta própria, conforme mapeamento abaixo:
 
----
+**Serviço - Porta**
+- Gateway (Acadêmico) - 8010
+- Disciplinas - 8000
+- Alunos - 8001
+- Notas - 8002
+- Turmas - 8004
+- Matrícula(Turma-Aluno) - 8003
+
+**Modelo URL das rotas**
+http://127.0.0.1:8000
 
 ## Como o gateway roteia as requisições
+Passos para o funcionamento do serviços:
+1. Cliente faz uma requisição para o gateway: POST /disciplinas
+2. Gateway identifica para qual microserviço a requisição pertence:
+      - Verifica a base de portas para cada microderviço
+      - Disciplinas = 8000
+3. Gateway repassa a requisição:
+      - http://127.0.0.1:8000/disciplinas
+      - Headers $h
+      - Body '{"id_disciplina":1,"disciplina":"Teste", "professor": "Nome Generico", "ementa": "100", "carga_horaria": "20"}'
+4. Gateway recebe resposta do microserviço:
+      -   Disciplina adicionada com sucesso! @{id_disciplina=4; disciplina=Teste; professor=Nome Generico; ementa=100; carga_h...
+5. Gateway devolve a resposta para o cliente
 
 ---
-
 ## Como cada serviço valida recursos externos
+Alguns microsserviços precisam confirmar que dados relacionados realmente existem em outros serviços antes de realizar uma operação.
 
+```
+def validar_recurso(url_base: str, recurso_id: int, nome_recurso: str):
+    try:
+        resposta = requests.get(f"{url_base}/{recurso_id}")
+        if resposta.status_code != 200:
+            raise HTTPException(status_code=404, detail=f"{nome_recurso} não encontrado no serviço correspondente.")
+    except requests.exceptions.RequestException:
+        raise HTTPException(status_code=500, detail=f"Serviço de {nome_recurso.lower()} indisponível no momento.")
+```
 ---
-
-## Como testar manualmente 
-
----
-
-
 ## Responsáveis
 
 ---
