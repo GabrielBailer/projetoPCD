@@ -5,7 +5,7 @@ BASE = {
     "disciplinas": "http://127.0.0.1:8000",
     "alunos": "http://127.0.0.1:8001",
     "notas": "http://127.0.0.1:8002",
-    "turma_aluno": "http://127.0.0.1:8003",
+    "matricula": "http://127.0.0.1:8003",
     "turmas": "http://127.0.0.1:8004",
 }
 
@@ -139,13 +139,13 @@ def get_turmas_por_disciplina():
 
 def listar_matriculas():
     with httpx.Client() as c:
-        r = c.get(BASE["turma_aluno"] + f"/matriculas")
+        r = c.get(BASE["matricula"] + f"/matriculas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def listar_matriculas_por_turmas():
     turma_id = input("turma_id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["turma_aluno"] + f"/matriculas/turma/"+turma_id)
+        r = c.get(BASE["matricula"] + f"/matriculas/turma/"+turma_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_matricula():
@@ -158,7 +158,7 @@ def adicionar_matricula():
     }
 
     with httpx.Client() as c:
-        r = c.post(BASE["turma_aluno"] + f"/matriculas", json=matricula)
+        r = c.post(BASE["matricula"] + f"/matriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def delete_matricula():
@@ -171,7 +171,7 @@ def delete_matricula():
     }
 
     with httpx.Client() as c:
-        r = c.delete(BASE["turma_aluno"] + f"/matriculas", json=matricula)
+        r = c.delete(BASE["matricula"] + f"/matriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def menu():

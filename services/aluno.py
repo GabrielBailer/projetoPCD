@@ -10,8 +10,7 @@ print("=" * 60)
 
 
 class AlunoIn(BaseModel):
-    nome: str
-    matricula: str
+    aluno: str
     email: str
 
 app = FastAPI(title="Microserviço de Alunos")
@@ -35,7 +34,7 @@ app.add_middleware(
 def health() -> bool:
     try:
         for a in aluno_db:
-            if not all(k in a for k in ("id", "nome", "matricula", "email")):
+            if not all(k in a for k in ("id", "aluno", "email")):
                 return False
         return True
     except Exception:
