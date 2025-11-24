@@ -2,11 +2,12 @@
 import httpx, json
 
 BASE = {
-    "disciplinas": "http://127.0.0.1:8000",
     "alunos": "http://127.0.0.1:8001",
-    "notas": "http://127.0.0.1:8002",
     "turma_aluno": "http://127.0.0.1:8003",
     "turmas": "http://127.0.0.1:8004",
+    "notas": "http://127.0.0.1:8002",
+    "disciplinas": "http://127.0.0.1:8000",
+    "professor": "http://127.0.0.1:8005"
 }
 
 def pretty(x):
@@ -30,7 +31,7 @@ def listar_disciplinas():
 def get_disciplina():
     disciplina_id = input("disciplina_id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["disciplinas"] + f"/disciplinas/"+disciplina_id)
+        r = c.get(BASE["disciplinas"] + f"/disciplina/"+disciplina_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_disciplina():
@@ -45,7 +46,7 @@ def adicionar_disciplina():
         "carga_horaria": carga_horaria,
     }
     with httpx.Client() as c:
-        r = c.post(BASE["disciplinas"] + f"/disciplinas", json=disciplina)
+        r = c.post(BASE["disciplinas"] + f"/addDisciplinas", json=disciplina)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def listar_alunos():
@@ -56,7 +57,7 @@ def listar_alunos():
 def get_aluno():
     aluno_id = input("aluno_id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["alunos"] + f"/alunos/"+aluno_id)
+        r = c.get(BASE["alunos"] + f"/aluno/"+aluno_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_aluno():
@@ -71,7 +72,7 @@ def adicionar_aluno():
     }
 
     with httpx.Client() as c:
-        r = c.post(BASE["alunos"] + f"/alunos", json=aluno)
+        r = c.post(BASE["alunos"] + f"/addAlunos", json=aluno)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def delete_aluno():
@@ -82,13 +83,13 @@ def delete_aluno():
 
 def listar_notas():
     with httpx.Client() as c:
-        r = c.get(BASE["notas"] + f"/usuarios")
+        r = c.get(BASE["notas"] + f"/notas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def get_nota():
     nota_id = input("nota_id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["notas"] + f"/notas/"+nota_id)
+        r = c.get(BASE["notas"] + f"/nota/"+nota_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_nota():
@@ -105,7 +106,7 @@ def adicionar_nota():
     }
     
     with httpx.Client() as c:
-        r = c.post(BASE["notas"] + f"/notas", json=nota)
+        r = c.post(BASE["notas"] + f"/addNotas", json=nota)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def get_nota_completa():
@@ -169,11 +170,34 @@ def delete_matricula():
         "turma_id": turma_id,
         "id_aluno": id_aluno,
     }
-
+    
     with httpx.Client() as c:
         r = c.delete(BASE["turma_aluno"] + f"/matriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
+    #Liste professor
 
+def listar_professores():
+    with httpx.Client() as c:
+        r = c.get(BASE["professor"] + f"/professores")
+        print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
+
+def buscar_professor():
+    professor_id = input("professor_id: ").strip()
+    with httpx.Client() as c:
+        r = c.get(BASE["professor"] + f"/professor/"+professor_id)
+        print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
+    
+def adicionar_professor():
+    professor_nome = input("nome: ").strip()
+    professor_email = input("email: ").strip()
+
+    novo_professor = {
+        "nome": professor_nome,
+        "email": professor_email,
+    }
+    with httpx.Client() as c:
+        r = c.post(BASE["professor"] + f"/addProfessores", json=novo_professor)
+        print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 def menu():
     while True:
         print("\n GATEWAY DE SERVIÇOS:")
@@ -197,6 +221,9 @@ def menu():
         print("18) Matrículas por turma")
         print("19) Adicionar matrícula")
         print("20) Remover matrícula")
+        print("21) Adiconar professor")
+        print("22) Listar professor")
+        print("23) Buscar professor")
         print("0)  Sair")
         op = input("Escolha: ").strip()
         try:
@@ -220,6 +247,9 @@ def menu():
             elif op == "18": listar_matriculas_por_turmas()
             elif op == "19": adicionar_matricula()
             elif op == "20": delete_matricula()
+            elif op == "21": adicionar_professor()
+            elif op == "22": listar_professores()
+            elif op == "23": buscar_professor()
             elif op == "0": print("Finalizando"); return
             else: print("opção inválida.")
         except Exception as e:
