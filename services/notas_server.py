@@ -4,21 +4,19 @@ from pydantic import BaseModel
 import uvicorn
 import requests
 
-print("MICROSSERVIÇO DE NOTAS")
+print("MICROSSERVIÇO DE NOTAS - Conectado")
 print("=" * 60)
 
 app = FastAPI(title="Microserviço de Nota")
 
 # CONFIGURAÇÃO DAS URLS EXTERNAS
-ALUNOS_URL = "http://localhost:8001/alunos"
-TURMAS_URL = "http://localhost:8004/turmas"
-DISCIPLINAS_URL = "http://localhost:8000/disciplinas"
+DISCIPLINAS_URL = "http://localhost:8000/disciplina"
+ALUNOS_URL = "http://localhost:8001/aluno"
 
 class NotaInput (BaseModel):
     aluno_id: int
-    turma_id: int 
     disciplina_id: int
-    valor: float
+    nota: float
 
 def validar_recurso(url: str, recurso_id: int, nome_recurso: str):
     try:
@@ -30,10 +28,23 @@ def validar_recurso(url: str, recurso_id: int, nome_recurso: str):
 
 # ================== BANCO DE DADOS SIMULADO ==================
 notas_db = [
-    {"id_nota": 1, "id_turma": 1, "Nota": 8},
-    {"id_nota": 2, "id_turma": 1,"id_disciplina": 2, "Nota": 5},
-    {"id_nota": 3, "id_turma": 1,"id_aluno": 3, "Nota": 4}
+    {"id_nota": 1,"id_aluno": 1, "id_disciplina": 1, "nota": 8},
+    {"id_nota": 2,"id_aluno": 2, "id_disciplina": 2, "nota": 5},
+    {"id_nota": 3,"id_aluno": 3, "id_disciplina": 3, "nota": 4}
 ]
+
+def health() -> bool:
+    try:
+        for a in notas_db:
+            if not all(k in a for k in ("id_nota", "id_aluno", "id_disciplina", "nota")):
+                return False
+        return True
+    except Exception:
+        return False
+    
+@app.get("/health")
+def health_check():
+    return {"ok": health()}
 
 # ================== ROTAS DO SERVIÇO DE NOTAS ==================
 @app.get("/")
@@ -41,10 +52,11 @@ def home():
     return {
         "serviço": "notas",
         "status": "Online",
+        "descricao": "Controla notas.",
         "serviços": {
             "listar": "/notas",
             "buscar": "/notas/{id}",
-            "adicionar": "/notas",
+            "adicionar": "/addNotas",
             "nota_completa": "/notas/completa/{id}"
         }
     }
@@ -54,7 +66,7 @@ def listar_notas():
     """Serviço de Notas - Lista notas"""
     return {"total": len(notas_db), "notas": notas_db}
 
-@app.get("/notas/{nota_id}")
+@app.get("/nota/{nota_id}")
 def buscar_nota(nota_id: int):
     for nota in notas_db:
         if nota["id_nota"] == nota_id:
@@ -62,20 +74,25 @@ def buscar_nota(nota_id: int):
     raise HTTPException(status_code=404, detail="Nota não encontrada")
 
 contador_id = len(notas_db) + 1
-@app.post("/notas")
+@app.post("/addNotas")
 def adicionar_nota(nota: NotaInput):
     global contador_id
 
-    validar_recurso(ALUNOS_URL, nota.aluno_id, "Aluno")
-    validar_recurso(TURMAS_URL, nota.turma_id, "Turma")
-    validar_recurso(DISCIPLINAS_URL, nota.disciplina_id, "Disciplina")
+    validar_recurso(ALUNOS_URL, nota.aluno_id, "aluno")
+    validar_recurso(DISCIPLINAS_URL, nota.disciplina_id, "disciplina")
+
+    for n in notas_db:
+        if n["id_aluno"] == nota.aluno_id and n["id_disciplina"] == nota.disciplina_id:
+            raise HTTPException(
+                status_code=400,
+                detail="Este aluno já possui uma nota cadastrada para essa disciplina."
+            )
 
     nova_nota = {
         "id_nota": contador_id,
-        "aluno_id": nota.aluno_id,
-        "disciplina_id": nota.disciplina_id,
-        "turma_id": nota.turma_id,
-        "valor": nota.valor
+        "id_aluno": nota.aluno_id,
+        "id_disciplina": nota.disciplina_id,
+        "nota": nota.nota
     }
 
     notas_db.append(nova_nota)
@@ -90,14 +107,9 @@ def nota_completa(nota_id: int):
         raise HTTPException(status_code=404, detail="Nota não encontrada")
     
     try:
-        aluno = requests.get(f"{ALUNOS_URL}/{nota['id_alunos']}").json().get("alunos")
+        aluno = requests.get(f"{ALUNOS_URL}/{nota['id_aluno']}").json().get("aluno")
     except:
         aluno = {"erro": "Serviço de alunos indisponível"}
-
-    try:
-        turma = requests.get(f"{TURMAS_URL}/{nota['id_turma']}").json().get("turma")
-    except:
-        turma = {"erro": "Serviço de turmas indisponível"}
 
     try:
         disciplina = requests.get(f"{DISCIPLINAS_URL}/{nota['id_disciplina']}").json().get("disciplina")
@@ -107,9 +119,10 @@ def nota_completa(nota_id: int):
     return {
         "nota": nota,
         "aluno": aluno,
-        "turma": turma,
         "disciplina": disciplina
     }
+
+    
 
 if __name__ == "__main__":  # Corrigido a indentação
     uvicorn.run("notas_server:app", host="0.0.0.0", port=8002, reload=True)  # Correção do nome do módulo

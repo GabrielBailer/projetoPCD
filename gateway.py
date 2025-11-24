@@ -2,11 +2,11 @@
 import httpx, json
 
 BASE = {
+    "disciplinas": "http://127.0.0.1:8000",
     "alunos": "http://127.0.0.1:8001",
+    "notas": "http://127.0.0.1:8002",
     "turma_aluno": "http://127.0.0.1:8003",
     "turmas": "http://127.0.0.1:8004",
-    "notas": "http://127.0.0.1:8002",
-    "disciplinas": "http://127.0.0.1:8000",
 }
 
 def pretty(x):

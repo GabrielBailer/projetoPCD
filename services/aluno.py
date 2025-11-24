@@ -5,7 +5,7 @@ import uvicorn
 import requests 
 
 
-print("🎯 MICROSSERVIÇO DE ALUNOS")
+print("MICROSSERVIÇO DE ALUNOS - Conectado")
 print("=" * 60)
 
 
@@ -17,9 +17,9 @@ class AlunoIn(BaseModel):
 app = FastAPI(title="Microserviço de Alunos")
 
 aluno_db = [
-    {"id": 1, "nome": "Ana Silva", "matricula": "202501", "email": "ana@email.com"},
-    {"id": 2, "nome": "Carlos Pereira", "matricula": "202502", "email": "carlos@email.com"},
-    {"id": 3, "nome": "Carla Costa", "matricula": "202503", "email": "carla@email.com"},
+    {"id": 1, "aluno": "Ana Silva",  "email": "ana@email.com"},
+    {"id": 2, "aluno": "Carlos Pereira", "email": "carlos@email.com"},
+    {"id": 3, "aluno": "Carla Costa", "email": "carla@email.com"},
 ]
 
 contador_id = 16 
@@ -49,11 +49,12 @@ def health_check():
 def home():
     return {
         "servico": "alunos",
-        "status": "Online 🚀",
+        "status": "Online",
+        "descricao": "Gerencia informações dos alunos",
         "servicos": {
             "listar": "/alunos",
             "buscar_por_id": "/alunos/{id}",
-            "adicionar": "/alunos",
+            "adicionar": "/addAlunos",
             "remover": "/alunos/{id}"
         }
     }
@@ -63,20 +64,27 @@ def listar_alunos():
     """Serviço de Alunos - Lista todos os alunos"""
     return {"total": len(aluno_db), "alunos": aluno_db}
 
-@app.get("/alunos/{aluno_id}")
+@app.get("/aluno/{aluno_id}")
 def buscar_aluno(aluno_id: int):
     for aluno in aluno_db:
         if aluno["id"] == aluno_id:
             return  {"servico": "aluno", "aluno": aluno}
     raise HTTPException(status_code=404, detail="Aluno não encontrado")
 
-@app.post("/alunos")
+@app.post("/addAlunos")
 def adicionar_aluno(aluno: AlunoIn):
     """Adiciona um novo aluno"""
     global contador_id
     
-    novo_aluno = aluno.dict()
-    novo_aluno["id"] = contador_id
+    for a in aluno_db:
+        if a["email"].lower() == aluno.email.lower():
+            raise HTTPException(status_code=400, detail="Já existe um aluno com este e-mail.")
+    
+    novo_aluno = {
+        "id": contador_id,
+        "nome": aluno.nome,
+        "email": aluno.email,
+    }
     
     aluno_db.append(novo_aluno)
     contador_id += 1
@@ -98,5 +106,4 @@ def remover_aluno(aluno_id: int):
     return {"mensagem": f"Aluno ID {aluno_id} removido com sucesso."}
 
 if __name__ == "__main__":
-    print("🚀 Iniciando servidor FastAPI...")
-    uvicorn.run(app, host="127.0.0.1", port=8013)
+    uvicorn.run("aluno:app", host="127.0.0.1", port=8001, reload=True)
