@@ -3,8 +3,8 @@ import httpx, json
 
 BASE = {
     "alunos": "http://127.0.0.1:8001",
-    "turma_aluno": "http://127.0.0.1:8003",
-    "turmas": "http://127.0.0.1:8004",
+    "matricula": "http://127.0.0.1:8003",
+    "salas": "http://127.0.0.1:8004",
     "notas": "http://127.0.0.1:8002",
     "disciplinas": "http://127.0.0.1:8000",
     "professor": "http://127.0.0.1:8005"
@@ -62,12 +62,10 @@ def get_aluno():
 
 def adicionar_aluno():
     nome = input("nome: ").strip()
-    matricula = input("matricula: ").strip()
     email = input("email: ").strip()
 
     aluno = {
         "nome": nome,
-        "matricula": matricula,
         "email": email,
     }
 
@@ -95,14 +93,12 @@ def get_nota():
 def adicionar_nota():
     aluno_id = input("aluno_id: ").strip()
     disciplina_id = input("disciplina_id: ").strip()
-    turma_id = input("turma_id: ").strip()
-    valor = input("valor: ").strip()
+    nota = input("nota: ").strip()
 
     nota = {
         "aluno_id": aluno_id,
         "disciplina_id": disciplina_id,
-        "turma_id": turma_id,
-        "valor": valor
+        "nota": nota
     }
     
     with httpx.Client() as c:
@@ -117,36 +113,46 @@ def get_nota_completa():
 
 def listar_turmas():
     with httpx.Client() as c:
-        r = c.get(BASE["turmas"] + f"/turmas")
+        r = c.get(BASE["salas"] + f"/salas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def get_turma():
-    turma_id = input("turma_id: ").strip()
+    turma_id = input("id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["turmas"] + f"/turmas/"+turma_id)
+        r = c.get(BASE["salas"] + f"/sala/"+turma_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
-def get_turmas_por_sala():
-    sala = input("sala: ").strip()
+def adicionar_sala():
+    disciplina = input("disciplina: ").strip()
+    nSala = input("nSala: ").strip()
+    isLab = input("isLab: ").strip()
+
+    nova_sala = {
+        "disciplina": disciplina,
+        "nSala": nSala,
+        "isLab": isLab
+    }
+    
     with httpx.Client() as c:
-        r = c.get(BASE["turmas"] + f"/turmas/sala/"+sala)
+        r = c.post(BASE["salas"] + f"/addSala", json=nova_sala)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
+
 
 def get_turmas_por_disciplina():
     disciplina = input("disciplina: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["turmas"] + f"/turmas/discip/"+disciplina)
+        r = c.get(BASE["salas"] + f"/sala/disciplina/"+disciplina)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def listar_matriculas():
     with httpx.Client() as c:
-        r = c.get(BASE["turma_aluno"] + f"/matriculas")
+        r = c.get(BASE["matricula"] + f"/matriculas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def listar_matriculas_por_turmas():
     turma_id = input("turma_id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["turma_aluno"] + f"/matriculas/turma/"+turma_id)
+        r = c.get(BASE["matricula"] + f"/matriculas/turma/"+turma_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_matricula():
@@ -159,7 +165,7 @@ def adicionar_matricula():
     }
 
     with httpx.Client() as c:
-        r = c.post(BASE["turma_aluno"] + f"/matriculas", json=matricula)
+        r = c.post(BASE["matricula"] + f"/matriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def delete_matricula():
@@ -172,7 +178,7 @@ def delete_matricula():
     }
     
     with httpx.Client() as c:
-        r = c.delete(BASE["turma_aluno"] + f"/matriculas", json=matricula)
+        r = c.delete(BASE["matricula"] + f"/matriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
     #Liste professor
 
@@ -215,7 +221,7 @@ def menu():
         print("12) Nota completa por ID")
         print("13) Listar turmas")
         print("14) Buscar turma por ID")
-        print("15) Turmas por sala")
+        print("15) Adicionar sala")
         print("16) Turmas por disciplina")
         print("17) Listar matrículas")
         print("18) Matrículas por turma")
@@ -241,7 +247,7 @@ def menu():
             elif op == "12": get_nota_completa()
             elif op == "13": listar_turmas()
             elif op == "14": get_turma()
-            elif op == "15": get_turmas_por_sala()
+            elif op == "15": adicionar_sala()
             elif op == "16": get_turmas_por_disciplina()
             elif op == "17": listar_matriculas()
             elif op == "18": listar_matriculas_por_turmas()
