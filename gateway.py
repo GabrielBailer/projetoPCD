@@ -41,7 +41,7 @@ def adicionar_disciplina():
     carga_horaria = input("carga horaria: ").strip()
     disciplina = {
         "disciplina": disciplina,
-        "professor": professor,
+        "id_professor": professor,
         "ementa": ementa,
         "carga_horaria": carga_horaria,
     }
@@ -65,7 +65,7 @@ def adicionar_aluno():
     email = input("email: ").strip()
 
     aluno = {
-        "nome": nome,
+        "aluno": nome,
         "email": email,
     }
 
@@ -111,15 +111,15 @@ def get_nota_completa():
         r = c.get(BASE["notas"] + f"/notas/completa/"+nota_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
-def listar_turmas():
+def listar_salas():
     with httpx.Client() as c:
         r = c.get(BASE["salas"] + f"/salas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
-def get_turma():
-    turma_id = input("id: ").strip()
+def get_sala():
+    sala_id = input("id: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["salas"] + f"/sala/"+turma_id)
+        r = c.get(BASE["salas"] + f"/sala/"+sala_id)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_sala():
@@ -138,7 +138,7 @@ def adicionar_sala():
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 
-def get_turmas_por_disciplina():
+def get_salas_por_disciplina():
     disciplina = input("disciplina: ").strip()
     with httpx.Client() as c:
         r = c.get(BASE["salas"] + f"/sala/disciplina/"+disciplina)
@@ -149,36 +149,31 @@ def listar_matriculas():
         r = c.get(BASE["matricula"] + f"/matriculas")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
-def listar_matriculas_por_turmas():
-    turma_id = input("turma_id: ").strip()
+def listar_matriculas_por_disciplina():
+    disciplina = input("disciplina: ").strip()
     with httpx.Client() as c:
-        r = c.get(BASE["matricula"] + f"/matriculas/turma/"+turma_id)
+        r = c.get(BASE["matricula"] + f"/matriculas/disciplina/"+disciplina)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def adicionar_matricula():
-    turma_id = input("turma_id: ").strip()
+    id_disciplina = input("disciplina: ").strip()
     id_aluno = input("id_aluno: ").strip()
 
     matricula = {
-        "turma_id": turma_id,
+        "id_disciplina": id_disciplina,
         "id_aluno": id_aluno,
     }
 
     with httpx.Client() as c:
-        r = c.post(BASE["matricula"] + f"/matriculas", json=matricula)
+        r = c.post(BASE["matricula"] + f"/addMatriculas", json=matricula)
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
 
 def delete_matricula():
-    turma_id = input("turma_id: ").strip()
+    id_disciplina = input("disciplina: ").strip()
     id_aluno = input("id_aluno: ").strip()
-
-    matricula = {
-        "turma_id": turma_id,
-        "id_aluno": id_aluno,
-    }
     
     with httpx.Client() as c:
-        r = c.delete(BASE["matricula"] + f"/matriculas", json=matricula)
+        r = c.delete(BASE["matricula"] + f"/matriculas/{id_disciplina}/{id_aluno}")
         print(r.status_code, pretty(r.json() if r.headers.get('content-type','').startswith('application/json') else r.text))
     #Liste professor
 
@@ -219,12 +214,12 @@ def menu():
         print("10) Buscar nota por ID")
         print("11) Adicionar nota")
         print("12) Nota completa por ID")
-        print("13) Listar turmas")
-        print("14) Buscar turma por ID")
+        print("13) Listar salas")
+        print("14) Buscar sala por ID")
         print("15) Adicionar sala")
-        print("16) Turmas por disciplina")
+        print("16) Salas por disciplina")
         print("17) Listar matrículas")
-        print("18) Matrículas por turma")
+        print("18) Matrículas por disciplina")
         print("19) Adicionar matrícula")
         print("20) Remover matrícula")
         print("21) Adiconar professor")
@@ -245,12 +240,12 @@ def menu():
             elif op == "10": get_nota()
             elif op == "11": adicionar_nota()
             elif op == "12": get_nota_completa()
-            elif op == "13": listar_turmas()
-            elif op == "14": get_turma()
+            elif op == "13": listar_salas()
+            elif op == "14": get_sala()
             elif op == "15": adicionar_sala()
-            elif op == "16": get_turmas_por_disciplina()
+            elif op == "16": get_salas_por_disciplina()
             elif op == "17": listar_matriculas()
-            elif op == "18": listar_matriculas_por_turmas()
+            elif op == "18": listar_matriculas_por_disciplina()
             elif op == "19": adicionar_matricula()
             elif op == "20": delete_matricula()
             elif op == "21": adicionar_professor()

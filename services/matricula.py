@@ -59,7 +59,7 @@ def home():
         "descricao": "Relaciona alunos às turmas.",
         "servicos": {
             "listar_matriculas": "/matriculas",
-            "listar_por_disciplina": "/matriculas/turma/{id_disciplina}",
+            "listar_por_disciplina": "/matriculas/disciplina/{id_disciplina}",
             "criar_matricula": "/addMatriculas",
             "remover_matricula": "/matriculas/{id_disciplina}/{id_aluno}"
         }
@@ -72,7 +72,7 @@ def listar_matriculas():
 
 
 @app.get("/matriculas/disciplina/{id_disciplina}")
-def listar_alunos_por_turma(id_disciplina: int):
+def listar_alunos_por_disciplina(id_disciplina: int):
     alunos = [m for m in matriculas_db if m["id_disciplina"] == id_disciplina]
     if not alunos:
         raise HTTPException(status_code=404, detail="Nenhum aluno matriculado nesta disciplina.")

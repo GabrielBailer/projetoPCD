@@ -21,7 +21,7 @@ aluno_db = [
     {"id": 3, "aluno": "Carla Costa", "email": "carla@email.com"},
 ]
 
-contador_id = 16 
+contador_id = len(aluno_db) + 1
 
 app.add_middleware(
     CORSMiddleware,
@@ -81,7 +81,7 @@ def adicionar_aluno(aluno: AlunoIn):
     
     novo_aluno = {
         "id": contador_id,
-        "nome": aluno.nome,
+        "aluno": aluno.aluno,
         "email": aluno.email,
     }
     

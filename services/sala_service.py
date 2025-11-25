@@ -39,8 +39,8 @@ sala_db = [
 
 def health() -> bool:
     try:
-        for a in turmas_db:
-            if not all(k in a for k in ("id", "disciplina", "nSala", "isLab")):
+        for s in sala_db:
+            if not all(k in s for k in ("id", "disciplina", "nSala", "isLab")):
                 return False
         return True
     except Exception:
@@ -102,7 +102,7 @@ def adicionar_sala(sala: SalaInput):
                 detail="Esta sala já está cadastrada com mesmo horário, sala e disciplina."
             )
 
-    novo_id = max(t["id"] for s in sala_db) + 1 if sala_db else 1
+    novo_id = max(s["id"] for s in sala_db) + 1 if sala_db else 1
     nova_sala = {
         "id": novo_id,
         "disciplina": sala.disciplina,
