@@ -19,11 +19,11 @@ Administra as disciplinas disponíveis.
 
 **Endpoints**
 - **GET /disciplinas** — Lista todas as disciplinas
-- **GET /disciplinas/{id}** — Busca disciplina por ID
+- **GET /disciplina/{id}** — Busca disciplina por ID
 - **POST /addDisciplinas** — Adiciona uma nova disciplina linkada com o professor
 
-### 🏫 Turmas
-Gerencia turmas, horários e salas.
+### 🏫 Salas
+Gerencia salas.
 
 **Porta**
 "microservico_turmas:app", host="0.0.0.0", port=8004
@@ -31,19 +31,17 @@ Gerencia turmas, horários e salas.
 **Campos**
 "id"
 "disciplina"
-"horarioIni"
-"horarioFim"
-"sala"
+"nSala"
+"isLab"
 
 **Endpoints**
-- **GET /turmas** — Lista todas as turmas
-- **GET /turmas/{id}** — Busca turma por ID
-- **GET /turmas/sala/{sala}** — Filtra turmas por sala
-- **GET /turmas/discip/{discip}** — Filtra turmas por disciplina
-- **POST /addTurmas** - Adiciona uma nova turma linkada com uma disciplina
+- **GET /salas** — Lista todas as turmas
+- **GET /sala/{id}** — Busca turma por ID
+- **GET /sala/disciplina/{disciplina}** — Filtra salas por disciplina
+- **POST /addSala** - Adiciona uma nova sala
 
 
-#### 🎓 Serviço de Matrículas(turma_aluno)
+#### 🎓 Serviço de Matrículas
 Faz a matrícula dos alunos à uma turma.
 
 **Porta**
@@ -56,7 +54,7 @@ Faz a matrícula dos alunos à uma turma.
 
 **Endpoints**
 - **GET /matriculas** — Lista todas as matrículas
-- **GET /matriculas/turma/{id_turma}** — Lista alunos por turma
+- **GET /matriculas/disciplina/{id_disciplina}** — Lista alunos por turma
 - **POST /addMatriculas** — Cria uma nova matrícula
 - **DELETE /matriculas/{id_turma}/{id_aluno}** — Remove uma matrícula
 
@@ -109,7 +107,7 @@ Gerencia professores.
 **Endpoints**
 - **GET /professores** — Lista todos os professores
 - **GET /professor/{id}** — Busca professor por ID
-- **POST /addDisciplinas** — Adiciona um novo professor
+- **POST /addProfessores** — Adiciona um novo professor
 ---
 ## Diagrama da arquitetura
 <img width="670" height="506" alt="image" src="https://github.com/user-attachments/assets/cfd0096f-b9c3-4f10-87f5-4f6d3e0e54df" />
@@ -147,6 +145,7 @@ project-root/
 ├── README.md # Documentação do sistema
 └── .gitignore
 ```
+*obs:*Foi adicionado um arquivo com os testes em um PostmanCollection
 ---
 ## Como instalar o serviço
 Siga os passos abaixo para instalar o projeto localmente:
@@ -252,10 +251,12 @@ Selecionando qualquer uma das opções acima o resultado seria parecido com esse
 Luis---------Gateway
 Matheo-------Disciplina
 Gabriel------Professor
+Gabriel------Revisar e modificar erros
 Gabriel------Turmas
 Gabrielle----Turma_aluno
 Ana----------Notas
 Amanda-------Aluno
+Amanda-------Coleçao postman
 Amanda-------Documentação (readme)
 
 
