@@ -1,0 +1,1585 @@
+{
+	"info": {
+		"_postman_id": "8ccdb33b-bf66-4d43-bbf5-4f71bf2582a0",
+		"name": "PostmanCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47766589",
+		"_collection_link": "https://demelloamanda3-6442096.postman.co/workspace/Amanda-de-Mello's-Workspace~5a9ae7e3-0a70-4e99-8522-fcd9ebbd944f/collection/47766589-8ccdb33b-bf66-4d43-bbf5-4f71bf2582a0?action=share&source=collection_link&creator=47766589"
+	},
+	"item": [
+		{
+			"name": "listar alunos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8001/alunos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8001",
+					"path": [
+						"alunos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8001/alunos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8001",
+							"path": [
+								"alunos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:01:26 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "193"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 3,\n    \"alunos\": [\n        {\n            \"id\": 1,\n            \"aluno\": \"Ana Silva\",\n            \"email\": \"ana@email.com\"\n        },\n        {\n            \"id\": 2,\n            \"aluno\": \"Carlos Pereira\",\n            \"email\": \"carlos@email.com\"\n        },\n        {\n            \"id\": 3,\n            \"aluno\": \"Carla Costa\",\n            \"email\": \"carla@email.com\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "listar professor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8005/professores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8005",
+					"path": [
+						"professores"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8005/professores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8005",
+							"path": [
+								"professores"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:04:28 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "200"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 3,\n    \"professor\": [\n        {\n            \"id\": 1,\n            \"professor\": \"Simone\",\n            \"email\": \"simone@email.com\"\n        },\n        {\n            \"id\": 2,\n            \"professor\": \"Ricardo\",\n            \"email\": \"ricardo@email.com\"\n        },\n        {\n            \"id\": 3,\n            \"professor\": \"Mariana\",\n            \"email\": \"mariana@email.com\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "listar disciplina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8000/disciplinas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8000",
+					"path": [
+						"disciplinas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8000/disciplinas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8000",
+							"path": [
+								"disciplinas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:04:10 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "386"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 3,\n    \"disciplinas\": [\n        {\n            \"id_disciplina\": 1,\n            \"disciplina\": \"Programação Concorrente e Distribuída\",\n            \"id_professor\": 1,\n            \"ementa\": \"ementa\",\n            \"carga_horaria\": \"80h\"\n        },\n        {\n            \"id_disciplina\": 2,\n            \"disciplina\": \"Engenharia de Software\",\n            \"id_professor\": 2,\n            \"ementa\": \"ementa\",\n            \"carga_horaria\": \"80h\"\n        },\n        {\n            \"id_disciplina\": 3,\n            \"disciplina\": \"Projeto Integrador\",\n            \"id_professor\": 3,\n            \"ementa\": \"ementa\",\n            \"carga_horaria\": \"40h\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "listar matricula",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8003/matriculas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8003",
+					"path": [
+						"matriculas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8003/matriculas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8003",
+							"path": [
+								"matriculas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:05:49 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "189"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 3,\n    \"dados\": [\n        {\n            \"id_disciplina\": 1,\n            \"id_aluno\": 1,\n            \"n_matricula\": \"202501\"\n        },\n        {\n            \"id_disciplina\": 2,\n            \"id_aluno\": 2,\n            \"n_matricula\": \"202502\"\n        },\n        {\n            \"id_disciplina\": 3,\n            \"id_aluno\": 3,\n            \"n_matricula\": \"202503\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "listar notas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8002/notas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8002",
+					"path": [
+						"notas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8002/notas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8002",
+							"path": [
+								"notas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:06:47 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "183"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"total\": 3,\n    \"notas\": [\n        {\n            \"id_nota\": 1,\n            \"id_aluno\": 1,\n            \"id_disciplina\": 1,\n            \"nota\": 8\n        },\n        {\n            \"id_nota\": 2,\n            \"id_aluno\": 2,\n            \"id_disciplina\": 2,\n            \"nota\": 5\n        },\n        {\n            \"id_nota\": 3,\n            \"id_aluno\": 3,\n            \"id_disciplina\": 3,\n            \"nota\": 4\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "listar sala",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8004/salas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8004",
+					"path": [
+						"salas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8004/salas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8004",
+							"path": [
+								"salas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:07:48 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "180"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"servico\": \"sala\",\n    \"total\": 3,\n    \"dados\": [\n        {\n            \"id\": 1,\n            \"disciplina\": 1,\n            \"nSala\": 1,\n            \"isLab\": true\n        },\n        {\n            \"id\": 2,\n            \"disciplina\": 2,\n            \"nSala\": 2,\n            \"isLab\": false\n        },\n        {\n            \"id\": 3,\n            \"disciplina\": 3,\n            \"nSala\": 3,\n            \"isLab\": true\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Buscar disiplina por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8000/disciplina/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8000",
+					"path": [
+						"disciplina",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8000/disciplina/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8000",
+							"path": [
+								"disciplina",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:13:47 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "152"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"servico\": \"disciplina\",\n    \"disciplina\": {\n        \"id_disciplina\": 2,\n        \"disciplina\": \"Engenharia de Software\",\n        \"id_professor\": 2,\n        \"ementa\": \"ementa\",\n        \"carga_horaria\": \"80h\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Adiciona disciplina",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"disciplina\": \"Estruturas de Dados\",\r\n  \"id_professor\": 2,\r\n  \"ementa\": \"Conceitos de listas, filas e árvores\",\r\n  \"carga_horaria\": \"60\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8000/addDisciplinas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8000",
+					"path": [
+						"addDisciplinas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"disciplina\": \"Estruturas de Dados\",\r\n  \"id_professor\": 2,\r\n  \"ementa\": \"Conceitos de listas, filas e árvores\",\r\n  \"carga_horaria\": \"60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8000/addDisciplinas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8000",
+							"path": [
+								"addDisciplinas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:20:59 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "204"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Disciplina adicionada com sucesso!\",\n    \"disciplina\": {\n        \"id_disciplina\": 4,\n        \"disciplina\": \"Estruturas de Dados\",\n        \"id_professor\": 2,\n        \"ementa\": \"Conceitos de listas, filas e árvores\",\n        \"carga_horaria\": \"60\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Buscar sala por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8004/sala/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8004",
+					"path": [
+						"sala",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8004/sala/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8004",
+							"path": [
+								"sala",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:26:59 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "73"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"servico\": \"sala\",\n    \"sala\": {\n        \"id\": 2,\n        \"disciplina\": 2,\n        \"nSala\": 2,\n        \"isLab\": false\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Filtra sala por disciplina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8004/sala/disciplina/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8004",
+					"path": [
+						"sala",
+						"disciplina",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8004/sala/disciplina/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8004",
+							"path": [
+								"sala",
+								"disciplina",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:28:56 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "99"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"servico\": \"sala\",\n    \"filtro\": \"disciplina=3\",\n    \"dados\": [\n        {\n            \"id\": 3,\n            \"disciplina\": 3,\n            \"nSala\": 3,\n            \"isLab\": true\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar Sala",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"disciplina\": 1,\r\n \"nSala\": 2,\r\n\"isLab\": \"True\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8004/addSala",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8004",
+					"path": [
+						"addSala"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"disciplina\": 1,\r\n \"nSala\": 2,\r\n\"isLab\": \"True\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8004/addSala",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8004",
+							"path": [
+								"addSala"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:30:38 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "97"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Sala adicionada com sucesso!\",\n    \"sala\": {\n        \"id\": 4,\n        \"disciplina\": 1,\n        \"nSala\": 2,\n        \"isLab\": true\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Filtra alunos por disciplina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8003/matriculas/disciplina/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8003",
+					"path": [
+						"matriculas",
+						"disciplina",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8003/matriculas/disciplina/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8003",
+							"path": [
+								"matriculas",
+								"disciplina",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:32:52 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "86"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_disciplina\": 1,\n    \"alunos\": [\n        {\n            \"id_disciplina\": 1,\n            \"id_aluno\": 1,\n            \"n_matricula\": \"202501\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar matrícula",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"id_disciplina\": 3,\r\n\"id_aluno\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8003/addMatriculas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8003",
+					"path": [
+						"addMatriculas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id_disciplina\": 3,\r\n\"id_aluno\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8003/addMatriculas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8003",
+							"path": [
+								"addMatriculas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:37:42 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "113"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Matrícula criada com sucesso!\",\n    \"matricula\": {\n        \"id_disciplina\": 3,\n        \"id_aluno\": 2,\n        \"n_matricula\": \"202504\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Excluir matrícula",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"id_disciplina\": 3,\r\n\"id_aluno\": 2\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.01:8003/matriculas/1/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8003",
+					"path": [
+						"matriculas",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"id_disciplina\": 3,\r\n\"id_aluno\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.01:8003/matriculas/1/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8003",
+							"path": [
+								"matriculas",
+								"1",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:39:14 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "47"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Matrícula removida com sucesso!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Busca nota por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8002/nota/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8002",
+					"path": [
+						"nota",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8002/nota/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8002",
+							"path": [
+								"nota",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:40:53 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "53"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_nota\": 1,\n    \"id_aluno\": 1,\n    \"id_disciplina\": 1,\n    \"nota\": 8\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar nota",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"aluno_id\": 2,\r\n        \"disciplina_id\": 1,\r\n        \"nota\": 4\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8002/addNotas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8002",
+					"path": [
+						"addNotas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"aluno_id\": 2,\r\n        \"disciplina_id\": 1,\r\n        \"nota\": 4\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8002/addNotas",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8002",
+							"path": [
+								"addNotas"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:42:53 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "106"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Nota adicionada com sucesso!\",\n    \"nota\": {\n        \"id_nota\": 4,\n        \"id_aluno\": 2,\n        \"id_disciplina\": 1,\n        \"nota\": 4\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Nota completa por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8002/notas/completa/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8002",
+					"path": [
+						"notas",
+						"completa",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8002/notas/completa/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8002",
+							"path": [
+								"notas",
+								"completa",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:44:15 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "251"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nota\": {\n        \"id_nota\": 3,\n        \"id_aluno\": 3,\n        \"id_disciplina\": 3,\n        \"nota\": 4\n    },\n    \"aluno\": {\n        \"id\": 3,\n        \"aluno\": \"Carla Costa\",\n        \"email\": \"carla@email.com\"\n    },\n    \"disciplina\": {\n        \"id_disciplina\": 3,\n        \"disciplina\": \"Projeto Integrador\",\n        \"id_professor\": 3,\n        \"ementa\": \"ementa\",\n        \"carga_horaria\": \"40h\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Buscar professor por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8005/professor/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8005",
+					"path": [
+						"professor",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8005/professor/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8005",
+							"path": [
+								"professor",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:45:31 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "58"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"professor\": \"Mariana\",\n    \"email\": \"mariana@email.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar professor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"nome\": \"Renato\",\r\n        \"email\": \"renatinho@gmail.com\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8005/addProfessores",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8005",
+					"path": [
+						"addProfessores"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nome\": \"Renato\",\r\n        \"email\": \"renatinho@gmail.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8005/addProfessores",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8005",
+							"path": [
+								"addProfessores"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:49:29 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "115"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Professor adicionado com sucesso!\",\n    \"professor\": {\n        \"id\": 4,\n        \"nome\": \"Renato\",\n        \"email\": \"renatinho@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Buscar aluno por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8001/aluno/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8001",
+					"path": [
+						"aluno",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8001/aluno/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8001",
+							"path": [
+								"aluno",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 22:52:03 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "84"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"servico\": \"aluno\",\n    \"aluno\": {\n        \"id\": 3,\n        \"aluno\": \"Carla Costa\",\n        \"email\": \"carla@email.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"aluno\": \"Joao\",\r\n    \"email\": \"jo@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.01:8001/addAlunos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8001",
+					"path": [
+						"addAlunos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"aluno\": \"Joao\",\r\n    \"email\": \"jo@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.01:8001/addAlunos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8001",
+							"path": [
+								"addAlunos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 23:02:53 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "99"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Aluno adicionado com sucesso!\",\n    \"aluno\": {\n        \"id\": 4,\n        \"aluno\": \"Joao\",\n        \"email\": \"jo@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Remover aluno",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.01:8001/alunos/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"01"
+					],
+					"port": "8001",
+					"path": [
+						"alunos",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.01:8001/alunos/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"01"
+							],
+							"port": "8001",
+							"path": [
+								"alunos",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 30 Nov 2025 23:04:09 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "47"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Aluno ID 2 removido com sucesso.\"\n}"
+				}
+			]
+		}
+	]
+}
