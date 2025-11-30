@@ -1,0 +1,22 @@
+Ao chamar o endpoint de notas/complesta é comunicado com os serviços de aluno e disciplina para mostrar a nota do aluno
+em determinada disciplina:
+
+pelo trexo:
+if not nota:
+        raise HTTPException(status_code=404, detail="Nota não encontrada")
+    
+    try:
+        aluno = requests.get(f"{ALUNOS_URL}/{nota['id_aluno']}").json().get("aluno")
+    except:
+        aluno = {"erro": "Serviço de alunos indisponível"}
+
+    try:
+        disciplina = requests.get(f"{DISCIPLINAS_URL}/{nota['id_disciplina']}").json().get("disciplina")
+    except:
+        disciplina = {"erro": "Serviço de disciplinas indisponível"}
+
+logs:
+
+INFO:     127.0.0.1:49336 - "GET /aluno/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49338 - "GET /disciplina/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49334 - "GET /notas/completa/3 HTTP/1.1" 200 OK

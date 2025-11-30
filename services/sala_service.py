@@ -116,4 +116,4 @@ def adicionar_sala(sala: SalaInput):
 
 # ================== EXECUÇÃO ==================
 if __name__ == "__main__":
-    uvicorn.run("microservico_sala:app", host="0.0.0.0", port=8004, reload=True)
+    uvicorn.run("sala_service:app", host="0.0.0.0", port=8004, reload=True)

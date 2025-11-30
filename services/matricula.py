@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+import logging
+from fastapi import FastAPI, HTTPException, logger
 from pydantic import BaseModel
 import uvicorn
 import requests
@@ -8,23 +9,10 @@ print("=" * 60)
 
 app = FastAPI(title="Microserviço de Matrículas")
 
-# URLs dos outros serviços
+logger = logging.getLogger("uvicorn.info")
+
 ALUNOS_URL = "http://127.0.0.1:8001"
-MATRICULAS_URL = "http://127.0.0.1:8000"
-
-
-# ===========================
-#   Função de validação
-# ===========================
-"""
-def validar_recurso(url_base: str, recurso_id: int, nome_recurso: str):
-    try:
-        resposta = requests.get(f"{url_base}/{recurso_id}")
-        if resposta.status_code != 200:
-            raise HTTPException(status_code=404, detail=f"{nome_recurso} não encontrado.")
-    except requests.exceptions.RequestException:
-        raise HTTPException(status_code=500, detail=f"Serviço de {nome_recurso.lower()} indisponível.")
-"""
+DISCIPLINA_URL = "http://127.0.0.1:8000"
 
 matriculas_db = [
     {"id_disciplina": 1, "id_aluno": 1, "n_matricula": "202501"},
@@ -56,7 +44,7 @@ def home():
     return {
         "servico": "matriculas",
         "status": "Online",
-        "descricao": "Relaciona alunos às turmas.",
+        "descricao": "Relaciona alunos as disciplinas.",
         "servicos": {
             "listar_matriculas": "/matriculas",
             "listar_por_disciplina": "/matriculas/disciplina/{id_disciplina}",
@@ -83,15 +71,11 @@ def listar_alunos_por_disciplina(id_disciplina: int):
 def criar_matricula(matricula: Matricula):
     global contador_matricula
 
-    # Validar aluno e turma em outros microserviços
-    #validar_recurso(ALUNOS_URL, matricula.id_aluno, "Aluno")
-    #validar_recurso(MATRICULAS_URL, matricula.id_disciplina, "Disciplina")
-
     resposta = requests.get(f"{ALUNOS_URL}/aluno/{matricula.id_aluno}")
     if resposta.status_code != 200:
             raise HTTPException(status_code=404, detail=f"Aluno não encontrado.")
 
-    resposta = requests.get(f"{MATRICULAS_URL}/disciplina/{matricula.id_disciplina}")
+    resposta = requests.get(f"{DISCIPLINA_URL}/disciplina/{matricula.id_disciplina}")
     if resposta.status_code != 200:
             raise HTTPException(status_code=404, detail=f"Disciplina não encontrado.")
 
@@ -109,7 +93,8 @@ def criar_matricula(matricula: Matricula):
     matriculas_db.append(nova_matricula)
     contador_matricula += 1
 
-    return {"mensagem": "Matrícula criada com sucesso!", "matricula": nova_matricula}
+    logger.info(f"Matrícula criada: {nova_matricula}")
+    return {"mensagem": "Matricula criada com sucesso!", "matricula": nova_matricula}
 
 
 @app.delete("/matriculas/{id_disciplina}/{id_aluno}")

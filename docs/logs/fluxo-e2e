@@ -1,0 +1,6 @@
+Ao chamar o endpoint addMatriculas o sistema pede confirmação para os seviços de aluno e disciplina
+sendo assim o seviço de matricula solicita dados para o serviço de alunos e disciplinas e então cria a matrícula
+
+INFO:     127.0.0.1:49290 - "GET /aluno/3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49291 - "GET /disciplina/1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49289 - "POST /addMatriculas HTTP/1.1" 200 OK
