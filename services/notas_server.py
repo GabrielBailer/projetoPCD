@@ -1,22 +1,28 @@
-from urllib import request
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+import requests as request
 from pydantic import BaseModel
-from typing import Dict, Tuple
 
 print("MICROSSERVIÇO DE NOTAS")
 print("=" * 60)
 
+class Nota(BaseModel):
+    aluno_id: int
+    turma_id: int
+    disciplina_id: int
+    valor: float
+
 app = FastAPI(title="Microserviço de Nota")
-"""
-!!!! NÃO FUNCIONA !!!!
-# Configurar CORS para permitir todas as origens
+
+# ================== CONFIGURAÇÃO DE CORS ==================
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)"""
+)
+
 # CONFIGURAÇÃO DAS URLS EXTERNAS
 ALUNOS_URL = "http://localhost:8001/alunos"
 TURMAS_URL = "http://localhost:8004/turmas"
@@ -24,7 +30,8 @@ DISCIPLINAS_URL = "http://localhost:8000/disciplinas"
 
 def validar_recurso(url: str, recurso_id: int, nome_recurso: str):
     try:
-        resposta = request.get(f"{url}/{recurso_id}")
+        resposta = request.get(f"{url}/{recurso_id}", timeout=3)
+
         if resposta.status_code != 200:
             raise HTTPException(status_code=404, detail=f"{nome_recurso} não encontrado")
     except:
@@ -32,10 +39,11 @@ def validar_recurso(url: str, recurso_id: int, nome_recurso: str):
 
 # ================== BANCO DE DADOS SIMULADO ==================
 notas_db = [
-    {"id_nota": 1, "id_turma": 1, "Nota": 8},
-    {"id_nota": 2, "id_turma": 1,"id_disciplina": 2, "Nota": 5},
-    {"id_nota": 3, "id_turma": 1,"id_aluno": 3, "Nota": 4}
+  {"id": 1, "aluno_id": 1, "turma_id": 1, "disciplina_id": 1, "valor": 8},
+  {"id": 2, "aluno_id": 2, "turma_id": 1, "disciplina_id": 2, "valor": 5},
+  {"id": 3, "aluno_id": 3, "turma_id": 1, "disciplina_id": 3, "valor": 4}
 ]
+
 # ================== ROTAS DO SERVICO DE USUÁRIOS ==================
 @app.get("/")
 def home():
@@ -50,7 +58,7 @@ def home():
         }
     }
 
-@app.get("/usuarios")
+@app.get("/notas")
 def listar_notas():
     """Serviço de Notas - Lista notas"""
     return {"total": len(notas_db), "notas":notas_db}
@@ -62,9 +70,10 @@ def buscar_nota(nota_id: int):
             return nota
     raise HTTPException(status_code=404, detail="Nota não encontrada")
 
+
 contador_id = len(notas_db) + 1
 @app.post("/notas")
-def adicionar_nota(nota): #: adicionar_nota
+def adicionar_nota(nota: Nota):
     global contador_id
 
     validar_recurso(ALUNOS_URL, nota.aluno_id, "Aluno")
